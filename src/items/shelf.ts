@@ -1,5 +1,5 @@
 import { Icon, icon } from '@fortawesome/fontawesome-svg-core';
-import { faHourglass1 } from '@fortawesome/free-solid-svg-icons';
+import { faTableCellsLarge } from '@fortawesome/free-solid-svg-icons';
 import { Item } from '../item/item';
 import * as paper from 'paper';
 
@@ -11,7 +11,7 @@ export class Shelf implements Item {
     constructor() {
         this.isSizable = false;
         this.title = "Bloc d'etagères";
-        this.icon = icon(faHourglass1);
+        this.icon = icon(faTableCellsLarge);
     }
 
     drawItem() {
