@@ -1,11 +1,11 @@
 import { project } from 'paper';
 import { Toolbox } from '../toolbox';
-//import * as paper from 'paper';
+import * as paper from 'paper';
 
 export class DoToolbox extends Toolbox {
     protected readonly title = 'Undo / Redo';
-    private undoList : Array<string> = [];
-    private currentState : number = 0;
+    protected undoList : Array<string> = [];
+    protected currentState : number = 0;
 
     public constructor() {
         super();
@@ -37,14 +37,14 @@ export class DoToolbox extends Toolbox {
         return element;
     }
 
-    // private saveState(): void {
-    //     const json = paper.project.exportJSON();
-    //     this.undoList.push(json);
-    //     if(this.undoList.length > 10)
-    //         this.undoList.shift();
-    //     else 
-    //         this.currentState++;
-    // }
+    public saveState(): void {
+        const json = paper.project.exportJSON();
+        this.undoList.push(json);
+        if(this.undoList.length > 10)
+            this.undoList.shift();
+        else 
+            this.currentState++;
+    }
 
     private undoProject(): void {
         if(this.currentState > 0)
