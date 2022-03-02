@@ -37,7 +37,7 @@ export class App {
 
     private initializePlan(modifiedCallback: Function): void {
         const canvas = document.createElement('canvas');
-        canvas.addEventListener('click', function() { modifiedCallback(); }, false);
+        canvas.addEventListener('mouseup', function() { modifiedCallback(); }, false);
         this.element.appendChild(canvas);
         paper.setup(canvas);
 
