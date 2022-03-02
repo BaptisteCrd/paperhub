@@ -1,5 +1,5 @@
 import { Icon, icon } from '@fortawesome/fontawesome-svg-core';
-import { faBox } from '@fortawesome/free-solid-svg-icons';
+import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
 import { Item } from '../item/item';
 
 export class Lamp implements Item {
@@ -10,7 +10,7 @@ export class Lamp implements Item {
     constructor() {
         this.isSizable = false;
         this.title = "Lampe";
-        this.icon = icon(faBox);
+        this.icon = icon(faLightbulb);
     }
 
     drawItem() {

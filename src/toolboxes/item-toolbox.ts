@@ -36,7 +36,7 @@ export class ItemToolbox extends Toolbox {
             itemChildElement.appendChild(item.icon.node[0]);
 
             // choisir et placer objet
-            // itemElement.addEventListener('click', () => this.currentColorElement!.value = color);
+            itemChildElement.addEventListener('click', () => item.drawItem());
 
             itemElement.appendChild(itemChildElement);
         }

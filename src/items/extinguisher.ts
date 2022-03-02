@@ -1,5 +1,5 @@
 import { Icon, icon } from '@fortawesome/fontawesome-svg-core';
-import { faHourglass1 } from '@fortawesome/free-solid-svg-icons';
+import { faFireExtinguisher } from '@fortawesome/free-solid-svg-icons';
 
 import { Item } from '../item/item';
 
@@ -11,7 +11,7 @@ export class Extinguisher implements Item {
     constructor() {
         this.isSizable = false;
         this.title = "Extincteur";
-        this.icon = icon(faHourglass1);
+        this.icon = icon(faFireExtinguisher);
     }
 
     drawItem() {

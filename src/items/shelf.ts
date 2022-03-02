@@ -1,6 +1,5 @@
 import { Icon, icon } from '@fortawesome/fontawesome-svg-core';
 import { faHourglass1 } from '@fortawesome/free-solid-svg-icons';
-
 import { Item } from '../item/item';
 
 export class Shelf implements Item {
@@ -15,6 +14,6 @@ export class Shelf implements Item {
     }
 
     drawItem() {
-        
+        console.log("Here");
     }
 }
