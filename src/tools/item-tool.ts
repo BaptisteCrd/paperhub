@@ -1,12 +1,12 @@
 import { icon } from '@fortawesome/fontawesome-svg-core';
-import { faBed } from '@fortawesome/free-solid-svg-icons';
+import { faObjectGroup } from '@fortawesome/free-solid-svg-icons';
 import { PaperTool } from '../toolbar';
 import { ItemToolbox } from '../toolboxes';
 
 export class ItemTool extends PaperTool {
     public readonly name = 'Placer un objet';
 
-    public readonly icon = icon(faBed);
+    public readonly icon = icon(faObjectGroup);
 
     public constructor(private readonly itemToolbox: ItemToolbox) {
         super();
