@@ -14,6 +14,10 @@ export class Lamp implements Item {
     }
 
     drawItem() {
-        
+
+    }
+
+    move() {
+      
     }
 }

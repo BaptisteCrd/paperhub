@@ -14,6 +14,10 @@ export class StorageBox implements Item {
     }
 
     drawItem() {
-        
+
+    }
+    
+    move() {
+
     }
 }

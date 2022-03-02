@@ -15,6 +15,10 @@ export class Extinguisher implements Item {
     }
 
     drawItem() {
-        
+
+    }
+
+    move() {
+
     }
 }

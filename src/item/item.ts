@@ -5,5 +5,5 @@ export interface Item {
     title: string,
     icon: Icon,
     drawItem(): void;
+    move(): void;
 }
-
