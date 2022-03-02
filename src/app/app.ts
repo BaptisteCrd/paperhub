@@ -2,7 +2,7 @@ import * as paper from 'paper';
 import { Plan } from '../plan';
 import { Toolbar } from '../toolbar';
 import { ToolboxesContainer } from '../toolbox';
-import { ColorToolbox, SaveToolbox } from '../toolboxes';
+import { ColorToolbox, SaveToolbox, DoToolbox } from '../toolboxes';
 import { FillTool, DrawTool } from '../tools';
 import './app.scss';
 
@@ -20,6 +20,7 @@ export class App {
 
         toolboxes.addToolbox(colorToolbox);
         toolboxes.addToolbox(new SaveToolbox());
+        toolboxes.addToolbox(new DoToolbox());
 
         const toolbar = Toolbar.create(element);
 
