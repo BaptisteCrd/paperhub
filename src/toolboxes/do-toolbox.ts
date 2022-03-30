@@ -41,7 +41,7 @@ export class DoToolbox extends Toolbox {
     public saveState(): void {
         const json = paper.project.exportJSON();
         this.idxCurrentState++;
-        this.saveList.splice(this.idxCurrentState, 0, json);
+        this.saveList.splice(this.idxCurrentState, this.saveList.length, json);
         this.saveList.splice(this.maxSave, this.saveList.length);
         console.log('SAVED LENGTH', this.saveList, 'idxCurrentState' , this.idxCurrentState);
     }

@@ -1,4 +1,3 @@
-
 export abstract class Item{
     isSizable: boolean;
     title: string;
@@ -7,7 +6,6 @@ export abstract class Item{
     countClicks: number;
 
     public constructor(countClicks: number, selected: boolean, isSizable: boolean, title: string){
-
         console.log("super");
         this.countClicks = countClicks;
         this.selected = selected;
