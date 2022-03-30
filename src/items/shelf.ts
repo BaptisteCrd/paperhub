@@ -1,32 +1,27 @@
-import { Icon, icon } from '@fortawesome/fontawesome-svg-core';
-import { faTableCellsLarge } from '@fortawesome/free-solid-svg-icons';
-import { Item } from '../item/item';
 import * as paper from 'paper';
+import { tool } from 'paper/dist/paper-core';
+import { Item } from '../item/item';
 
-export class Shelf implements Item {
-    public readonly isSizable : boolean;
-    public readonly title: string;
-    public readonly icon: Icon
-
+export class Shelf extends Item {
     constructor() {
-        this.isSizable = false;
-        this.title = "Bloc d'etagères";
-        this.icon = icon(faTableCellsLarge);
+        super(0, true, false, "Bloc d'etagères");
+
+        tool.onMouseDrag = this.moveItem.bind(this);
+
     }
 
-    drawItem() {
-        var rectangle = new paper.Rectangle(new paper.Point(0, 0), new paper.Point(150, 75));
+    drawItem = (event : MouseEvent) => {
+        var rectangle = new paper.Rectangle(new paper.Point(0,0), new paper.Point(event.clientX + 150, event.clientY + 75));
         var path = new paper.Path.Rectangle(rectangle);
         path.fillColor = new paper.Color('orange');
         path.opacity = .7;
 
         var text = new paper.PointText(new paper.Point(75, 40));
         text.justification = 'center';
-        text.fillColor = new paper.Color('black');;
+        text.fillColor = new paper.Color('black');
         text.content = this.title;
-    }
 
-    move() {
-      // path.selected = true;
+        this.path = path;
+
     }
 }

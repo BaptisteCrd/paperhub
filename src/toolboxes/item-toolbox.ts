@@ -1,24 +1,15 @@
 import { Item } from '../item/item';
-import { StorageBox, Shelf, Lamp, Extinguisher } from '../items';
+import { ItemFactory } from '../item/itemFactory';
 import { Toolbox } from '../toolbox';
+import { Shelf } from '../toolbox_items/shelf';
 import './item-toolbox.scss';
 
 export class ItemToolbox extends Toolbox {
     protected readonly title = 'Objets';
 
     private static readonly items = [
-        new Shelf, new StorageBox, new Lamp, new Extinguisher
+        new Shelf
     ];
-
-    private currentItemElement?: Item;
-
-    public get currentItem(): Item {
-        if (!this.currentItemElement) {
-            throw new Error(`${this.createElement.name} was not called!`);
-        }
-
-        return this.currentItemElement;
-    }
 
     public createElement(): HTMLElement {
         const element = super.createElement();
@@ -36,7 +27,7 @@ export class ItemToolbox extends Toolbox {
             itemChildElement.appendChild(item.icon.node[0]);
 
             // choisir et placer objet
-            itemChildElement.addEventListener('click', () => item.drawItem());
+            itemChildElement.addEventListener('click', (event) => this.createItem(item.name, event));            
 
             itemElement.appendChild(itemChildElement);
         }
@@ -44,5 +35,12 @@ export class ItemToolbox extends Toolbox {
         element.appendChild(itemElement);
 
         return element;
+    }
+
+    public createItem(name: string, event: MouseEvent){
+        let item = ItemFactory.createItem(name) as Item;
+        item.drawItem(event);
+        
+       // item.moveItem(event);
     }
 }

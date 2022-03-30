@@ -1,17 +1,10 @@
-import { Icon, icon } from '@fortawesome/fontawesome-svg-core';
-import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
 import { Item } from '../item/item';
 import * as paper from 'paper';
 
-export class Lamp implements Item {
-    public readonly isSizable : boolean;
-    public readonly title: string;
-    public readonly icon: Icon
+export class Lamp extends Item {
 
     constructor() {
-        this.isSizable = false;
-        this.title = "Lampe";
-        this.icon = icon(faLightbulb);
+        super(0, true, false, "Lampe");
     }
 
     drawItem() {
@@ -23,9 +16,5 @@ export class Lamp implements Item {
       text.justification = 'center';
       text.fillColor = new paper.Color('black');;
       text.content = this.title;
-    }
-
-    move() {
-
     }
 }
