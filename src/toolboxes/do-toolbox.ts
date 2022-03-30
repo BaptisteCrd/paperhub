@@ -4,8 +4,9 @@ import * as paper from 'paper';
 
 export class DoToolbox extends Toolbox {
     protected readonly title = 'Undo / Redo';
-    protected undoList : Array<string> = [];
-    protected currentState : number = 0;
+    protected saveList : Array<string> = [];
+    protected idxCurrentState : number = -1;
+    private readonly maxSave : number = 10;
 
     public constructor() {
         super();
@@ -33,36 +34,42 @@ export class DoToolbox extends Toolbox {
         element.appendChild(redoButtonElement);
 
         this.visible = true;
-
+      
         return element;
     }
 
     public saveState(): void {
         const json = paper.project.exportJSON();
-        this.undoList.push(json);
-        if(this.undoList.length > 10)
-            this.undoList.shift();
-        else 
-            this.currentState++;
+        if(json != this.saveList.at(this.idxCurrentState)){
+          this.idxCurrentState++;
+          this.saveList.splice(this.idxCurrentState, this.saveList.length, json);
+          this.saveList.splice(this.maxSave, this.saveList.length);
+          console.log('SAVED LENGTH', this.saveList.length, 'idxCurrentState' , this.idxCurrentState);
+        }
     }
 
     private undoProject(): void {
-        if(this.currentState > 0)
-            this.currentState--;
-        const json = this.undoList.at(this.currentState);
+        const json = this.saveList.at(this.idxCurrentState-1);
+        console.log('LENGTH', this.saveList.length, 'idxCurrentState' , this.idxCurrentState);
         if (json) {
-            project.clear();
-            project.importJSON(json);
+            if(this.idxCurrentState>0){
+              project.clear();
+              project.importJSON(json);
+            }
         }
+        if(this.idxCurrentState > 0)
+            this.idxCurrentState--;
     }
 
     private redoProject(): void {
-        if(this.currentState < 10)
-            this.currentState++;
-        const json = this.undoList.at(this.currentState);
-        if (json) {
-            project.clear();
-            project.importJSON(json);
-        }
+        if(this.idxCurrentState < this.saveList.length-1){
+            this.idxCurrentState++;
+            const json = this.saveList.at(this.idxCurrentState+1);
+            if (json) {
+                project.clear();
+                project.importJSON(json);
+            }
+          }
+        console.log('LENGTH', this.saveList.length, 'idxCurrentState' , this.idxCurrentState);
     }
 }
