@@ -44,5 +44,6 @@ export class App {
         const plan = new Plan();
 
         plan.initialize();
+        modifiedCallback();
     }
 }

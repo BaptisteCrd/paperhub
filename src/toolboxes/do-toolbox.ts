@@ -40,36 +40,33 @@ export class DoToolbox extends Toolbox {
 
     public saveState(): void {
         const json = paper.project.exportJSON();
-        if(json != this.saveList.at(this.idxCurrentState)){
-          this.idxCurrentState++;
-          this.saveList.splice(this.idxCurrentState, this.saveList.length, json);
-          this.saveList.splice(this.maxSave, this.saveList.length);
-          console.log('SAVED LENGTH', this.saveList.length, 'idxCurrentState' , this.idxCurrentState);
-        }
+        this.idxCurrentState++;
+        this.saveList.splice(this.idxCurrentState, 0, json);
+        this.saveList.splice(this.maxSave, this.saveList.length);
+        console.log('SAVED LENGTH', this.saveList, 'idxCurrentState' , this.idxCurrentState);
     }
 
     private undoProject(): void {
-        const json = this.saveList.at(this.idxCurrentState-1);
-        console.log('LENGTH', this.saveList.length, 'idxCurrentState' , this.idxCurrentState);
-        if (json) {
-            if(this.idxCurrentState>0){
-              project.clear();
-              project.importJSON(json);
+        if(this.idxCurrentState>0){
+            const json = this.saveList.at(this.idxCurrentState-1);
+            if (json) {
+                project.clear();
+                project.importJSON(json);
+                this.idxCurrentState--;
             }
         }
-        if(this.idxCurrentState > 0)
-            this.idxCurrentState--;
+        console.log('LENGTH', this.saveList.length, 'idxCurrentState' , this.idxCurrentState);
     }
 
     private redoProject(): void {
         if(this.idxCurrentState < this.saveList.length-1){
-            this.idxCurrentState++;
             const json = this.saveList.at(this.idxCurrentState+1);
             if (json) {
                 project.clear();
                 project.importJSON(json);
+                this.idxCurrentState++;
             }
-          }
+        }
         console.log('LENGTH', this.saveList.length, 'idxCurrentState' , this.idxCurrentState);
     }
 }
