@@ -1,14 +1,18 @@
 import { Item } from '../item/item';
 import { ItemFactory } from '../item/itemFactory';
 import { Toolbox } from '../toolbox';
+import { Extinguisher } from '../toolbox_items/extinguisher';
+import { Lamp } from '../toolbox_items/lamp';
 import { Shelf } from '../toolbox_items/shelf';
+import { StorageBox } from '../toolbox_items/storageBox';
 import './item-toolbox.scss';
+import { project } from 'paper';
 
 export class ItemToolbox extends Toolbox {
     protected readonly title = 'Objets';
 
     private static readonly items = [
-        new Shelf
+        new Shelf, new Lamp, new StorageBox, new Extinguisher
     ];
 
     public createElement(): HTMLElement {
@@ -17,8 +21,6 @@ export class ItemToolbox extends Toolbox {
         element.classList.add('color-toolbox');
 
         const itemElement = document.createElement('div');
-
-        //this.currentItemElement.classList.add('input-current-color');
 
         for (const item of ItemToolbox.items) {
             const itemChildElement = document.createElement('div');
@@ -38,9 +40,9 @@ export class ItemToolbox extends Toolbox {
     }
 
     public createItem(name: string, event: MouseEvent){
+        project.activeLayer.selected = false;
         let item = ItemFactory.createItem(name) as Item;
         item.drawItem(event);
-        
-       // item.moveItem(event);
     }
+
 }

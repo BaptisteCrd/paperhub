@@ -12,9 +12,9 @@ export class Lamp extends Item {
       circle.fillColor = new paper.Color("#33c1ff");
       circle.opacity = .7;
 
-      var text = new paper.PointText(new paper.Point(0, 0));
-      text.justification = 'center';
-      text.fillColor = new paper.Color('black');;
-      text.content = this.title;
+      // var text = new paper.PointText(new paper.Point(0, 0));
+      // text.justification = 'center';
+      // text.fillColor = new paper.Color('black');;
+      // text.content = this.title;
     }
 }

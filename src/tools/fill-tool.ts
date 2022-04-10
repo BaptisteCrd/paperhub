@@ -28,6 +28,7 @@ export class FillTool extends PaperTool {
     }
 
     public onMouseDown(event: paper.ToolEvent): void {
+        console.log("here");
         const hit = paper.project.activeLayer.hitTest(event.downPoint);
 
         if (hit?.item) {

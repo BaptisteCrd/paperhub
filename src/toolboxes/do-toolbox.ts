@@ -43,7 +43,7 @@ export class DoToolbox extends Toolbox {
         this.idxCurrentState++;
         this.saveList.splice(this.idxCurrentState, this.saveList.length, json);
         this.saveList.splice(this.maxSave, this.saveList.length);
-        console.log('SAVED LENGTH', this.saveList, 'idxCurrentState' , this.idxCurrentState);
+        //console.log('SAVED LENGTH', this.saveList, 'idxCurrentState' , this.idxCurrentState);
     }
 
     private undoProject(): void {
@@ -55,7 +55,7 @@ export class DoToolbox extends Toolbox {
                 this.idxCurrentState--;
             }
         }
-        console.log('LENGTH', this.saveList.length, 'idxCurrentState' , this.idxCurrentState);
+        //console.log('LENGTH', this.saveList.length, 'idxCurrentState' , this.idxCurrentState);
     }
 
     private redoProject(): void {
@@ -67,6 +67,6 @@ export class DoToolbox extends Toolbox {
                 this.idxCurrentState++;
             }
         }
-        console.log('LENGTH', this.saveList.length, 'idxCurrentState' , this.idxCurrentState);
+        //console.log('LENGTH', this.saveList.length, 'idxCurrentState' , this.idxCurrentState);
     }
 }

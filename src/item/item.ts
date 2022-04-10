@@ -1,9 +1,12 @@
-export abstract class Item{
+import * as paper from 'paper';
+
+export abstract class Item {
     isSizable: boolean;
     title: string;
     selected: boolean;
     path?: paper.Path;
     countClicks: number;
+    paperTool = new paper.Tool();
 
     public constructor(countClicks: number, selected: boolean, isSizable: boolean, title: string){
         console.log("super");
@@ -14,23 +17,4 @@ export abstract class Item{
     }
 
     abstract drawItem(event: MouseEvent): void;
-
-
-    moveItem(event: paper.ToolEvent): void {
-        console.log("test");
-        console.log(this.path);
-        console.log(this.selected);
-        if(this.path && this.selected){
-            this.path.position = event.point;
-        }
-    }
-
-    placeItem() {
-        this.countClicks++;
-        if(this.path && !(this.countClicks % 2)){
-            this.selected = false;
-        } else {
-            this.selected = true;
-        }
-    }
 }
