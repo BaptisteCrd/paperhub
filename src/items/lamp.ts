@@ -11,7 +11,7 @@ export class Lamp extends Item {
       var circle = new paper.Path.Circle(new paper.Point(0, -3), 30);
       circle.fillColor = new paper.Color("#33c1ff");
       circle.opacity = .7;
-
+      paper.view.emit('paper_changed', new Event('paper_changed'));
       // var text = new paper.PointText(new paper.Point(0, 0));
       // text.justification = 'center';
       // text.fillColor = new paper.Color('black');;

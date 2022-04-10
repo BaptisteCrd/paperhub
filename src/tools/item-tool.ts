@@ -16,6 +16,7 @@ export class ItemTool extends PaperTool {
     public readonly name = 'Placer un objet';
 
     public readonly icon = icon(faObjectGroup);
+    private eventPaperChanged = new Event('paper_changed');
     public segment: paper.Segment = new paper.Segment();
     public path: paper.Item = new paper.Item();
     movePath = false;
@@ -60,8 +61,10 @@ export class ItemTool extends PaperTool {
             this.path = hitResult.item;
         }
         this.movePath = hitResult.type == 'fill';
-        if (this.movePath)
+        if (this.movePath){
             project.activeLayer.addChild(hitResult.item);
+            paper.view.emit('paper_changed', this.eventPaperChanged);
+        }
     }
 
 
@@ -84,6 +87,7 @@ export class ItemTool extends PaperTool {
             if(event.key == "delete"){
                 this.path.remove();
             }
+            paper.view.emit('paper_changed', this.eventPaperChanged);
         }
     }
 }

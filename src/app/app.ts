@@ -26,24 +26,23 @@ export class App {
         toolboxes.addToolbox(new SaveToolbox());
 
         const toolbar = Toolbar.create(element);
-        
-        toolbar.addTool(new FillTool(colorToolbox));
-        toolbar.addTool(new DrawTool());
-        toolbar.addTool(new ItemTool(itemToolbox));
 
+        const fillTool = new FillTool(colorToolbox);
+        const drawTool = new DrawTool();
+        const itemTool = new ItemTool(itemToolbox);
 
-        this.initializePlan(function() { doToolbox.saveState(); });
-    }
+        toolbar.addTool(fillTool);
+        toolbar.addTool(drawTool);
+        toolbar.addTool(itemTool);
 
-    private initializePlan(modifiedCallback: Function): void {
         const canvas = document.createElement('canvas');
-        canvas.addEventListener('mouseup', function() { modifiedCallback(); }, false);
         this.element.appendChild(canvas);
         paper.setup(canvas);
 
         const plan = new Plan();
-
         plan.initialize();
-        modifiedCallback();
+
+        paper.view.on('paper_changed', function () { doToolbox.saveState(); });
+        paper.view.emit('paper_changed', new Event('paper_changed'));
     }
 }

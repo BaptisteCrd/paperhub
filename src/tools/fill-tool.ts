@@ -8,6 +8,7 @@ export class FillTool extends PaperTool {
     public readonly name = 'Remplir la forme';
 
     public readonly icon = icon(faFillDrip);
+    private eventPaperChanged = new Event('paper_changed');
 
     public constructor(private readonly colorToolbox: ColorToolbox) {
         super();
@@ -28,11 +29,11 @@ export class FillTool extends PaperTool {
     }
 
     public onMouseDown(event: paper.ToolEvent): void {
-        console.log("here");
         const hit = paper.project.activeLayer.hitTest(event.downPoint);
 
         if (hit?.item) {
             hit.item.fillColor = this.colorToolbox.currentPaperColor;
+            paper.view.emit('paper_changed', this.eventPaperChanged);
         }
     }
 }

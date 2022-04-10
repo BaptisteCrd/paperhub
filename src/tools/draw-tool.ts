@@ -8,6 +8,8 @@ export class DrawTool extends PaperTool {
     public readonly icon = icon(faPencil);
     public myPath : any;
 
+    private eventPaperChanged = new Event('paper_changed');
+
     public constructor() {
         super();
 
@@ -39,6 +41,7 @@ export class DrawTool extends PaperTool {
     	  this.myPath.closed = true;
         this.myPath.fillColor = '#9AD8FF';
         this.myPath = undefined;
+        paper.view.emit('paper_changed', this.eventPaperChanged);
       } else {
         this.myPath.add(event.point);
       }

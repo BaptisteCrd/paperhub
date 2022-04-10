@@ -8,6 +8,7 @@ export class Shelf extends Item {
 
     drawItem = (event : MouseEvent) => {
         console.log(event);
+        paper.view.emit('paper_changed', new Event('paper_changed'));
         var rectangle = new paper.Rectangle(new paper.Point(-75, -37.5), new paper.Point(75, 37.5));
         var path = new paper.Path.Rectangle(rectangle);
         path.fillColor = new paper.Color('orange');
