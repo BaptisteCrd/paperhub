@@ -4,12 +4,15 @@ export class Plan {
     public initialize(): void {
         paper.view.center = new paper.Point(0, 0);
 
-        const decagon = new paper.Path.RegularPolygon(new paper.Point(0, 0), 10, 200);
+        var myPath = new paper.Path({
+	         segments: [[-400, -300], [-150,-300], [-150,-200], [0,-200], [0,-250], [400,-250], [400, 0], [300,0], [300, 150], [400, 150], [400,350], [-400, 350], [-400,300], [-300, 300], [-300, 250], [-400, 250], [-400, -300]],
+        });
 
-        decagon.fillColor = new paper.Color('#e9e9ff');
-        decagon.selected = true;
+        myPath.fillColor = new paper.Color('#c4c1be');
+
+        myPath.selected = true;
         
-        decagon.data.basePlan = true;
-        decagon.data.isSizable = true;
+        myPath.data.basePlan = true;
+        myPath.data.isSizable = true;
     }   
 }

@@ -54,7 +54,6 @@ export class DrawTool extends PaperTool {
         this.myPath.data = new DrawItem(true, "Drawed Item", false, true);
         this.myPath = undefined;
         paper.view.emit('paper_changed', this.eventPaperChanged);
-
       } else {
         this.myPath.add(event.point);
       }

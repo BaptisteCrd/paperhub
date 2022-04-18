@@ -16,6 +16,7 @@ export class ItemTool extends PaperTool {
     public readonly name = 'Placer un objet';
 
     public readonly icon = icon(faObjectGroup);
+    private eventPaperChanged = new Event('paper_changed');
     public segment: paper.Segment = new paper.Segment();
     public path: any;
     public movePath: boolean = false;
@@ -84,6 +85,8 @@ export class ItemTool extends PaperTool {
         } else {
             this.initialPosition = new paper.Point(this.path.position.x, this.path.position.y);
         }
+
+        paper.view.emit('paper_changed', this.eventPaperChanged);
     }
 
     public onMouseUp(event: paper.MouseEvent): void {
@@ -104,6 +107,8 @@ export class ItemTool extends PaperTool {
                 this.path.position.y = this.initialPosition.y;
             }
         }
+
+        paper.view.emit('paper_changed', this.eventPaperChanged);
     }
 
     public checkIntersections(): boolean {
@@ -167,6 +172,7 @@ export class ItemTool extends PaperTool {
                     this.path.remove();
                 }
             }
+            paper.view.emit('paper_changed', this.eventPaperChanged);
         }
     }
 }
