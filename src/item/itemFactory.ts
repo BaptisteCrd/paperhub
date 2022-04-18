@@ -1,10 +1,9 @@
-import { Extinguisher, Lamp, Shelf, StorageBox } from "../items";
+import { BakeryStand, Extinguisher, Lamp, Shelf, StorageBox } from "../items";
 import { Item } from "./item";
 
 export class ItemFactory {
     
     public static createItem = (itemType: string): Item => { 
-
         if(itemType == "shelf"){
             return new Shelf();
         } 
@@ -20,6 +19,10 @@ export class ItemFactory {
         if(itemType == "storageBox"){
             return new StorageBox();
         } 
+
+        if(itemType == "bakeryStand"){
+            return new BakeryStand;
+        }
 
         return new Shelf;
     }

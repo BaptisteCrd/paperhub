@@ -1,20 +1,13 @@
-import * as paper from 'paper';
-
 export abstract class Item {
     isSizable: boolean;
-    title: string;
-    selected: boolean;
-    path?: paper.Path;
-    countClicks: number;
-    paperTool = new paper.Tool();
+    title: string;	
+    isHanging: boolean; 
+    isRotatable: boolean;
 
-    public constructor(countClicks: number, selected: boolean, isSizable: boolean, title: string){
-        console.log("super");
-        this.countClicks = countClicks;
-        this.selected = selected;
+    public constructor(isSizable: boolean, title: string, isHanging: boolean, isRotatable: boolean){
         this.isSizable = isSizable;
         this.title = title;
+        this.isHanging = isHanging;
+        this.isRotatable = isRotatable;
     }
-
-    abstract drawItem(event: MouseEvent): void;
 }

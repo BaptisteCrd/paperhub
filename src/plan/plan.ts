@@ -8,5 +8,8 @@ export class Plan {
 
         decagon.fillColor = new paper.Color('#e9e9ff');
         decagon.selected = true;
-    }
+        
+        decagon.data.basePlan = true;
+        decagon.data.isSizable = true;
+    }   
 }
