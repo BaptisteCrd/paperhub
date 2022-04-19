@@ -15,7 +15,7 @@ export class Lamp extends Item {
 
     public drawItem(): paper.Path {
       var circle = new paper.Path.Circle(new paper.Point(0, -3), 30);
-      circle.fillColor = new paper.Color("#33c1ff");
+      circle.fillColor = new paper.Color("blue");
       circle.opacity = .7;
 
       paper.view.emit('paper_changed', new Event('paper_changed'));

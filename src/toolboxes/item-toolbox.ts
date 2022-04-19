@@ -1,7 +1,7 @@
 import { Item } from '../item/item';
 import { ItemFactory } from '../item/itemFactory';
 import { Toolbox } from '../toolbox';
-import { BakeryStand, Extinguisher, Lamp, Shelf, StorageBox } from "../toolbox_items";
+import { BakeryStand, Door, Extinguisher, Lamp, Shelf, StorageBox } from "../toolbox_items";
 import './item-toolbox.scss';
 import { project } from 'paper';
 
@@ -10,7 +10,7 @@ export class ItemToolbox extends Toolbox {
     protected readonly title = 'Tailles fixes';
 
     private static readonly fixItems = [
-        new Shelf, new StorageBox, new Extinguisher
+        new Shelf, new StorageBox, new Extinguisher, new Door
     ];
 
     private static readonly varItems = [
@@ -35,7 +35,7 @@ export class ItemToolbox extends Toolbox {
 
             itemChildElement.classList.add("item");
             itemChildElement.appendChild(item.icon.node[0]);
-            itemChildElement.addEventListener('click', () => this.createItem(item));            
+            itemChildElement.addEventListener('click', () => this.createItem(item));
             fixItemElement.appendChild(itemChildElement);
         }
 
@@ -50,7 +50,7 @@ export class ItemToolbox extends Toolbox {
 
             itemChildElement.classList.add("item");
             itemChildElement.appendChild(item.icon.node[0]);
-            itemChildElement.addEventListener('click', () => this.createItem(item));            
+            itemChildElement.addEventListener('click', () => this.createItem(item));
             varItemElement.appendChild(itemChildElement);
         }
 
@@ -65,7 +65,7 @@ export class ItemToolbox extends Toolbox {
 
             itemChildElement.classList.add("item");
             itemChildElement.appendChild(item.icon.node[0]);
-            itemChildElement.addEventListener('click', () => this.createItem(item));            
+            itemChildElement.addEventListener('click', () => this.createItem(item));
             hangItemElement.appendChild(itemChildElement);
         }
 
