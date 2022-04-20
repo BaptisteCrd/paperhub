@@ -45,7 +45,7 @@ export class DoToolbox extends Toolbox {
             this.saveList.splice(this.idxCurrentState, this.saveList.length, json);
         }
         this.saveList.splice(this.maxSave, this.saveList.length);
-        console.log('SAVED LENGTH', this.saveList, 'idxCurrentState' , this.idxCurrentState);
+        //console.log('SAVED LENGTH', this.saveList, 'idxCurrentState' , this.idxCurrentState);
     }
 
     private undoProject(): void {

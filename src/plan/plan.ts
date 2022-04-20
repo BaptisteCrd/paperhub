@@ -14,5 +14,8 @@ export class Plan {
         
         myPath.data.basePlan = true;
         myPath.data.isSizable = true;
+        myPath.data.title = "Plan de base"
+        myPath.data.isRotatable = false;
+        myPath.data.isHanging = false;
     }   
 }

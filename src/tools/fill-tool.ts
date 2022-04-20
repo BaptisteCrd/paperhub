@@ -12,7 +12,6 @@ export class FillTool extends PaperTool {
 
     public constructor(private readonly colorToolbox: ColorToolbox) {
         super();
-
         this.paperTool.onMouseDown = this.onMouseDown.bind(this);
     }
 
@@ -27,6 +26,7 @@ export class FillTool extends PaperTool {
 
         this.colorToolbox.visible = false;
     }
+
 
     public onMouseDown(event: paper.ToolEvent): void {
         const hit = paper.project.activeLayer.hitTest(event.downPoint);

@@ -4,6 +4,7 @@ import { PaperTool } from '../toolbar';
 import { ItemToolbox } from '../toolboxes';
 import { project } from 'paper';
 import * as paper from 'paper';
+import { PropertyDetailbox } from '../detailsboxes/property-detailbox';
 
 var hitOptions = {
 	segments: true,
@@ -22,7 +23,7 @@ export class ItemTool extends PaperTool {
     public movePath: boolean = false;
     public initialPosition : paper.Point;
 
-    public constructor(private readonly itemToolbox: ItemToolbox) {
+    public constructor(private readonly itemToolbox: ItemToolbox, private readonly propertyDetailbox: PropertyDetailbox) {
         super();
 
         this.paperTool.onMouseDown = this.onMouseDown.bind(this);
@@ -41,6 +42,7 @@ export class ItemTool extends PaperTool {
         super.disable();
 
         this.itemToolbox.visible = false;
+        this.propertyDetailbox.visible = false;
     }
 
     public onMouseDown(event: paper.ToolEvent): void {
@@ -54,8 +56,10 @@ export class ItemTool extends PaperTool {
         var hitResult = project.hitTest(event.point, hitOptions);
 
         if (!hitResult){
+            this.propertyDetailbox.visible = false;
             return;
         }
+
 
         if (event.modifiers.shift) {
             if (hitResult.type == 'segment') {
@@ -86,6 +90,11 @@ export class ItemTool extends PaperTool {
             this.initialPosition = new paper.Point(this.path.position.x, this.path.position.y);
         }
 
+
+        this.propertyDetailbox.setProperties(this.path);
+
+        this.propertyDetailbox.visible = true;
+
         paper.view.emit('paper_changed', this.eventPaperChanged);
     }
 
@@ -105,6 +114,7 @@ export class ItemTool extends PaperTool {
             } else {
                 this.path.position.x = this.initialPosition.x;
                 this.path.position.y = this.initialPosition.y;
+                this.propertyDetailbox.setPosition(this.path.position);
             }
         }
 
@@ -143,6 +153,7 @@ export class ItemTool extends PaperTool {
             if(!this.path.data.basePlan){
                 this.path.position.x += event.delta.x;
                 this.path.position.y += event.delta.y;
+                this.propertyDetailbox.setPosition(this.path.position);
             }
         } 
     }
@@ -156,12 +167,14 @@ export class ItemTool extends PaperTool {
                     let collision = this.checkIntersections();
                     if(!collision){
                         this.path.rotate(45);
+                        this.propertyDetailbox.setPosition(this.path.position);
                     }
                 }
                 if(event.key == "left"){            
                     let collision = this.checkIntersections();
                     if(!collision){
                         this.path.rotate(-45);
+                        this.propertyDetailbox.setPosition(this.path.position);
                     }
                     
                 }

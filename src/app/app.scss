@@ -25,4 +25,11 @@
         right: 2rem;
         bottom: 2rem;
     }
+
+    > .detailboxes-container {
+        z-index: 1;
+        position: absolute;
+        left: 2rem;
+        bottom: 2rem;
+    }
 }
