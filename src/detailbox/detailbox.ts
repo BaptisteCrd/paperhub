@@ -1,3 +1,5 @@
+import './detailbox.scss';
+
 export abstract class Detailbox {
     protected element?: HTMLElement;
 
@@ -18,7 +20,7 @@ export abstract class Detailbox {
         this.element = document.createElement('div');
 
         this.element.style.display = 'block';
-        this.element.classList.add('toolbox');
+        this.element.classList.add('detailbox');
 
         return this.element;
     }
