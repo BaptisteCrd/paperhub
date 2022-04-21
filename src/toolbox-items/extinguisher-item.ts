@@ -1,9 +1,10 @@
 import { Icon, icon } from '@fortawesome/fontawesome-svg-core';
 import { faFireExtinguisher } from '@fortawesome/free-solid-svg-icons';
-import { Item } from '../toolbox_item/item';
 import * as paper from 'paper';
+import { ColorHelper } from '../helpers';
+import { ToolboxItem } from '../toolbox-item/toolbox-item';
 
-export class Extinguisher extends Item {
+export class ExtinguisherItem extends ToolboxItem {
     public readonly title: string;
     public readonly icon: Icon;
     public readonly name: string;
@@ -14,7 +15,7 @@ export class Extinguisher extends Item {
 
     public drawItem(): paper.Path {
       var circle = new paper.Path.Circle(new paper.Point(0, -3), 15);
-      circle.fillColor = new paper.Color("red");
+      circle.fillColor = new paper.Color(ColorHelper.extinguisherFillColor);
       circle.opacity = .7;
 
       paper.view.emit('paper_changed', new Event('paper_changed'));

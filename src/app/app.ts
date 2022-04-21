@@ -3,8 +3,8 @@ import { Plan } from '../plan';
 import { PropertyDetailbox } from '../detailsboxes/property-detailbox';
 import { Toolbar } from '../toolbar';
 import { ToolboxesContainer } from '../toolbox';
-import { ColorToolbox, SaveToolbox, DoToolbox, ItemToolbox } from '../toolboxes';
-import { FillTool, DrawTool,  ItemTool } from '../tools';
+import { ColorToolbox, SaveToolbox, DoToolbox, ItemToolbox, PlanToolbox } from '../toolboxes';
+import { FillTool, DrawTool,  ItemTool, PlanTool, PartitionTool } from '../tools';
 import './app.scss';
 import { DetailboxesContainer } from '../detailbox/detailboxes-container';
 
@@ -25,9 +25,11 @@ export class App {
         const colorToolbox = new ColorToolbox();
         const itemToolbox = new ItemToolbox();
         const doToolbox = new DoToolbox();
+        const planToolbox = new PlanToolbox();
 
         const toolboxes = ToolboxesContainer.create(element);
 
+        toolboxes.addToolbox(planToolbox);
         toolboxes.addToolbox(colorToolbox);
         toolboxes.addToolbox(itemToolbox);
         toolboxes.addToolbox(doToolbox);
@@ -36,9 +38,13 @@ export class App {
         const toolbar = Toolbar.create(element);
 
         const fillTool = new FillTool(colorToolbox);
+        const partitionTool = new PartitionTool();
         const drawTool = new DrawTool();
         const itemTool = new ItemTool(itemToolbox, propertyDetailbox);
+        const planTool = new PlanTool(planToolbox);
 
+        toolbar.addTool(planTool);
+        toolbar.addTool(partitionTool);
         toolbar.addTool(fillTool);
         toolbar.addTool(drawTool);
         toolbar.addTool(itemTool);

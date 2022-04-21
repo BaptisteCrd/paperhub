@@ -1,6 +1,6 @@
 import { Icon } from '@fortawesome/fontawesome-svg-core';
 
-export abstract class Item {
+export abstract class ToolboxItem {
     public readonly title: string;
     public readonly icon: Icon;
     public readonly name: string;

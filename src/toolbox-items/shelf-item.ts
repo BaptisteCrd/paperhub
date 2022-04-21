@@ -1,21 +1,22 @@
 import { Icon, icon } from '@fortawesome/fontawesome-svg-core';
-import { faIndustry } from '@fortawesome/free-solid-svg-icons';
-import { Item } from '../toolbox_item/item';
+import { faTableCellsLarge } from '@fortawesome/free-solid-svg-icons';
 import * as paper from 'paper';
+import { ColorHelper } from '../helpers';
+import { ToolboxItem } from '../toolbox-item/toolbox-item';
 
-export class BakeryStand extends Item {
+export class ShelfItem extends ToolboxItem {
     public readonly title: string;
     public readonly icon: Icon;
     public readonly name: string;
 
     constructor() {
-        super("Stand de boulangerie", "bakeryStand", icon(faIndustry));
+        super("Bloc d'etagères", "shelf", icon(faTableCellsLarge));
     }
 
     public drawItem(): paper.Path {
         var rectangle = new paper.Rectangle(new paper.Point(-75, -37.5), new paper.Point(75, 37.5));
         var path = new paper.Path.Rectangle(rectangle);
-        path.fillColor = new paper.Color('green');
+        path.fillColor = new paper.Color(ColorHelper.shelfFillColor);
         path.opacity = .7;
 
         paper.view.emit('paper_changed', new Event('paper_changed'));

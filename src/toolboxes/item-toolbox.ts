@@ -1,24 +1,24 @@
 import { Item } from '../item/item';
 import { ItemFactory } from '../item/itemFactory';
 import { Toolbox } from '../toolbox';
-import { BakeryStand, Door, Extinguisher, Lamp, Shelf, StorageBox } from "../toolbox_items";
 import './item-toolbox.scss';
 import { project } from 'paper';
+import { ShelfItem, StorageBoxItem, ExtinguisherItem, DoorItem, BakeryStandItem, LampItem } from '../toolbox-items';
 
 
 export class ItemToolbox extends Toolbox {
     protected readonly title = 'Tailles fixes';
 
     private static readonly fixItems = [
-        new Shelf, new StorageBox, new Extinguisher, new Door
+        new ShelfItem, new StorageBoxItem, new ExtinguisherItem, new DoorItem
     ];
 
     private static readonly varItems = [
-        new BakeryStand
+        new BakeryStandItem
     ];
 
     private static readonly hangingItems = [
-        new Lamp
+        new LampItem
     ];
 
 

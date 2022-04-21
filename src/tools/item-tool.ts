@@ -5,6 +5,7 @@ import { ItemToolbox } from '../toolboxes';
 import { project } from 'paper';
 import * as paper from 'paper';
 import { PropertyDetailbox } from '../detailsboxes/property-detailbox';
+import { PathHelper } from '../helpers';
 
 var hitOptions = {
 	segments: true,
@@ -105,7 +106,7 @@ export class ItemTool extends PaperTool {
             type = hitResult.type;
         }
         
-        let collision = this.checkIntersections();
+        let collision = PathHelper.checkIntersections(this.path);
 
         if(collision){
             if(type == "segment"){
@@ -116,32 +117,12 @@ export class ItemTool extends PaperTool {
                 this.path.position.y = this.initialPosition.y;
                 this.propertyDetailbox.setPosition(this.path.position);
             }
+
+            this.path.fillColor = this.path.data.color;
         }
 
         paper.view.emit('paper_changed', this.eventPaperChanged);
     }
-
-    public checkIntersections(): boolean {
-        let items = project.activeLayer.getItems({class: "Path"});
-
-        let collision = false;
-
-        items.forEach(element => {
-            if(this.path){
-                if(element.id != this.path.id && !element.data.basePlan){
-                    if(!collision){
-                        if((element.data.isHanging && this.path.data.isHanging) ||
-                        (!element.data.isHanging && !this.path.data.isHanging)){
-                            collision = this.path.intersects(element);   
-                        }                 
-                    }
-                }
-            }
-        });
-
-        return collision;
-    }
-
 
     public onMouseDrag(event: paper.MouseEvent): void {
         if(this.segment){
@@ -156,6 +137,12 @@ export class ItemTool extends PaperTool {
                 this.propertyDetailbox.setPosition(this.path.position);
             }
         } 
+
+        if(PathHelper.checkIntersections(this.path)){
+            this.path.fillColor = new paper.Color("red");
+        } else {
+            this.path.fillColor = this.path.data.color;
+        }
     }
 
     public onKeyDown(event: paper.KeyEvent): void {
@@ -164,14 +151,14 @@ export class ItemTool extends PaperTool {
 
                 //add message if cant be rotated !!!
                 if(event.key == "right"){            
-                    let collision = this.checkIntersections();
+                    let collision = PathHelper.checkIntersections(this.path);
                     if(!collision){
                         this.path.rotate(45);
                         this.propertyDetailbox.setPosition(this.path.position);
                     }
                 }
                 if(event.key == "left"){            
-                    let collision = this.checkIntersections();
+                    let collision = PathHelper.checkIntersections(this.path);
                     if(!collision){
                         this.path.rotate(-45);
                         this.propertyDetailbox.setPosition(this.path.position);
