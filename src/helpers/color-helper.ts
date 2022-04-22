@@ -19,5 +19,7 @@ export class ColorHelper {
     public static readonly shelfFillColor= "orange";
     public static readonly storageBoxFillColor= "yellow";
     public static readonly suspendedLampsColor= "pink";
+    public static readonly stairsColor= "brown";
+    public static readonly displayPanelColor= "cyan";
 
 }

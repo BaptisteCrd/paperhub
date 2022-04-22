@@ -3,14 +3,14 @@ import { ItemFactory } from '../item/itemFactory';
 import { Toolbox } from '../toolbox';
 import './item-toolbox.scss';
 import { project } from 'paper';
-import { ShelfItem, StorageBoxItem, ExtinguisherItem, DoorItem, BakeryStandItem, LampItem, SuspendedLampsItem } from '../toolbox-items';
+import { ShelfItem, StorageBoxItem, ExtinguisherItem, DoorItem, BakeryStandItem, LampItem, SuspendedLampsItem, StairsItem, DisplayPanelItem } from '../toolbox-items';
 
 
 export class ItemToolbox extends Toolbox {
     protected readonly title = 'Tailles fixes';
 
     private static readonly fixItems = [
-        new ShelfItem, new StorageBoxItem, new ExtinguisherItem, new DoorItem
+        new ShelfItem, new StorageBoxItem, new ExtinguisherItem, new DoorItem, new StairsItem
     ];
 
     private static readonly varItems = [
@@ -18,7 +18,7 @@ export class ItemToolbox extends Toolbox {
     ];
 
     private static readonly hangingItems = [
-        new LampItem, new SuspendedLampsItem
+        new LampItem, new SuspendedLampsItem, new DisplayPanelItem
     ];
 
 

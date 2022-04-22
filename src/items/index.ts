@@ -4,4 +4,6 @@ export * from './storageBox';
 export * from './extinguisher';
 export * from './bakeryStand';
 export * from './door';
+export * from './displayPanel';
 export * from './suspendedLamps';
+export * from './stairs';
