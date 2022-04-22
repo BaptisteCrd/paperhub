@@ -21,5 +21,6 @@ export class ColorHelper {
     public static readonly suspendedLampsColor= "pink";
     public static readonly stairsColor= "brown";
     public static readonly displayPanelColor= "cyan";
+    public static readonly checkoutColor= "#cc5500";
 
 }

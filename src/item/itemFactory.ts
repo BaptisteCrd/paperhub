@@ -1,4 +1,4 @@
-import { BakeryStand, Door, Extinguisher, Lamp, Shelf, StorageBox, SuspendedLamps, Stairs, DisplayPanel } from "../items";
+import { BakeryStand, Door, Extinguisher, Lamp, Shelf, StorageBox, SuspendedLamps, Stairs, DisplayPanel, Checkout } from "../items";
 import { Item } from "./item";
 
 export class ItemFactory {
@@ -38,6 +38,10 @@ export class ItemFactory {
 
         if(itemType == "displayPanel"){
           return new DisplayPanel;
+        }
+
+        if(itemType == "checkout"){
+          return new Checkout;
         }
 
         return new Shelf;

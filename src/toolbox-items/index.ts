@@ -7,3 +7,4 @@ export * from './extinguisher-item';
 export * from './bakeryStand-item';
 export * from './door-item';
 export * from './displayPanel-item';
+export * from './checkout-item';

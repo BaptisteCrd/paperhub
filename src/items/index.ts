@@ -5,5 +5,6 @@ export * from './extinguisher';
 export * from './bakeryStand';
 export * from './door';
 export * from './displayPanel';
+export * from './checkout';
 export * from './suspendedLamps';
 export * from './stairs';
