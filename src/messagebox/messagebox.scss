@@ -6,10 +6,10 @@
     row-gap: 16px;
     padding: 16px;
     border-radius: 6px;
-    background-color: vars.$color-slate;
     box-shadow: vars.$popup-box-shadow;
-    color: white;
-
     z-index: 9999;
     position: absolute;
+    color: vars.$color-error;
+    background-color: vars.$color-error-background;
+    
 }

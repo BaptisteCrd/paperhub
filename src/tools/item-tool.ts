@@ -142,7 +142,7 @@ export class ItemTool extends PaperTool {
                 this.propertyDetailbox.setPosition(this.path.position);
             }
 
-            this.errorMessagebox.setErrorMessage("ERREUR: Vous ne pouvez pas deplacer cet objet à cause de colisions !");
+            this.errorMessagebox.setErrorMessage("Vous ne pouvez pas deplacer cet objet à cause de collisions !");
             this.errorMessagebox.show();
 
             this.path.fillColor = this.path.data.color;
@@ -191,7 +191,7 @@ export class ItemTool extends PaperTool {
                         this.propertyDetailbox.setPosition(this.path.position);
                     } else {
                         this.path.rotate(-45);
-                        this.errorMessagebox.setErrorMessage("ERREUR: Vous ne pouvez pas tourner cet objet à cause de colisions !");
+                        this.errorMessagebox.setErrorMessage("Vous ne pouvez pas tourner cet objet à cause de collisions !");
                         this.errorMessagebox.show();
                     }
                 }
@@ -203,7 +203,7 @@ export class ItemTool extends PaperTool {
                         this.propertyDetailbox.setPosition(this.path.position);
                     } else {
                         this.path.rotate(45);
-                        this.errorMessagebox.setErrorMessage("ERREUR: Vous ne pouvez pas tourner cet objet à cause de colisions !");
+                        this.errorMessagebox.setErrorMessage("Vous ne pouvez pas tourner cet objet à cause de collisions !");
                         this.errorMessagebox.show();
                     }
                 }

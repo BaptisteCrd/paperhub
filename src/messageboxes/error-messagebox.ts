@@ -27,9 +27,17 @@ export class ErrorMessagebox extends Messagebox {
         const detailElement = document.createElement('div');
         detailElement.classList.add("error-message");
 
+        const errorTitle = document.createElement('div');
+        errorTitle.textContent = "ERREUR : "
+
+        const errorMessage = document.createElement('div');
+        errorMessage.append(errorTitle);
+
         this.message = document.createElement('div');
         this.message.textContent = "";
-        detailElement.appendChild(this.message);
+        errorMessage.append(this.message)
+
+        detailElement.appendChild(errorMessage);
 
         element.appendChild(detailElement);
 

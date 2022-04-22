@@ -57,7 +57,7 @@ export class PartitionTool extends PaperTool {
                     this.path.fullySelected = false;
                     this.active = !this.active;
 
-                    this.errorMessagebox.setErrorMessage("PROBLEME-INTER-START");
+                    this.errorMessagebox.setErrorMessage("Vous ne pouvez pas tracer cette cloison à cause de collisions !");
                     this.errorMessagebox.show();
                 } else {
                     this.point = event.point;
@@ -67,7 +67,7 @@ export class PartitionTool extends PaperTool {
                     this.path.remove();
                     this.path.fullySelected = false;
 
-                    this.errorMessagebox.setErrorMessage("PROBLEME-INTER-END");
+                    this.errorMessagebox.setErrorMessage("Vous ne pouvez pas tracer cette cloison à cause de collisions !");
                     this.errorMessagebox.show();
                 } else {
                     this.path.fullySelected = true;
