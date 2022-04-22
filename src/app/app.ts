@@ -7,7 +7,12 @@ import { ColorToolbox, SaveToolbox, DoToolbox, ItemToolbox, PlanToolbox } from '
 import { FillTool, DrawTool,  ItemTool, PlanTool, PartitionTool } from '../tools';
 import './app.scss';
 import { DetailboxesContainer } from '../detailbox/detailboxes-container';
+import { MessageboxesContainer } from '../messagebox/messageboxes-container';
+import { ErrorMessagebox } from '../messageboxes/error-messagebox';
 
+/**
+ * App (Entrypoint of application)
+ */
 export class App {
     public static create(host: HTMLElement): App {
         host.classList.add('app');
@@ -15,13 +20,27 @@ export class App {
         return new App(host);
     }
 
+
+    /**
+     * Creates an instance of App.
+     * @param element
+     */
     private constructor(private readonly element: HTMLElement) {
+        // Section - Messagebox
+        const errorMessagebox = new ErrorMessagebox();
+        
+        const messageboxes = MessageboxesContainer.create(element);
+
+        messageboxes.addMessagebox(errorMessagebox);
+
+        // Section - Detailbox
         const propertyDetailbox = new PropertyDetailbox();
 
         const detailboxes = DetailboxesContainer.create(element);
 
         detailboxes.addDetailbox(propertyDetailbox);
 
+        // Section - Toolbox
         const colorToolbox = new ColorToolbox();
         const itemToolbox = new ItemToolbox();
         const doToolbox = new DoToolbox();
@@ -35,12 +54,13 @@ export class App {
         toolboxes.addToolbox(doToolbox);
         toolboxes.addToolbox(new SaveToolbox());
 
+        // Section - Toolbar
         const toolbar = Toolbar.create(element);
 
         const fillTool = new FillTool(colorToolbox);
-        const partitionTool = new PartitionTool();
+        const partitionTool = new PartitionTool(errorMessagebox);
         const drawTool = new DrawTool();
-        const itemTool = new ItemTool(itemToolbox, propertyDetailbox);
+        const itemTool = new ItemTool(itemToolbox, propertyDetailbox, errorMessagebox);
         const planTool = new PlanTool(planToolbox);
 
         toolbar.addTool(planTool);
@@ -49,10 +69,12 @@ export class App {
         toolbar.addTool(drawTool);
         toolbar.addTool(itemTool);
 
+        // Create canvas, initializes paperJS 
         const canvas = document.createElement('canvas');
         this.element.appendChild(canvas);
         paper.setup(canvas);
 
+        // Create base plan
         const plan = new Plan();
         plan.initialize();
 

@@ -1,0 +1,10 @@
+.error-message {
+	>div {
+		>div {
+			display: inline-block;
+			&:first-of-type {
+				width: 60%;
+			}
+		}
+    }
+}

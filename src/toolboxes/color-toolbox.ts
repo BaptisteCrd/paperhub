@@ -2,6 +2,9 @@ import * as paper from 'paper';
 import { Toolbox } from '../toolbox';
 import './color-toolbox.scss';
 
+/**
+ * ColorToolbox extends Toolbox
+ */
 export class ColorToolbox extends Toolbox {
     protected readonly title = 'Couleur';
 
@@ -12,6 +15,9 @@ export class ColorToolbox extends Toolbox {
 
     private currentColorElement?: HTMLInputElement;
 
+    /**
+     * Gets current color as string from HTMLInputElement currcentColorElement
+     */
     public get currentColor(): string {
         if (!this.currentColorElement) {
             throw new Error(`${this.createElement.name} was not called!`);
@@ -20,10 +26,17 @@ export class ColorToolbox extends Toolbox {
         return this.currentColorElement.value;
     }
 
+    /**
+     * Gets current paperJS color from currentColor()
+     */
     public get currentPaperColor(): paper.Color {
         return new paper.Color(this.currentColor);
     }
 
+    /**
+     * Creates an HTML Element 
+     * @returns element - HTMLElement
+     */
     public createElement(): HTMLElement {
         const element = super.createElement();
 
@@ -41,6 +54,7 @@ export class ColorToolbox extends Toolbox {
 
         colorsElement.classList.add('palette');
 
+        // Add colors to Color palette
         for (const color of ColorToolbox.colors) {
             const colorElement = document.createElement('div');
 

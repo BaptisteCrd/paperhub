@@ -1,11 +1,18 @@
 import { Tool } from './tool';
 import './toolbar.scss';
 
+/**
+ * Toolbar
+ */
 export class Toolbar {
     private readonly elementByTool = new Map<Tool, HTMLElement>();
-
     private enabledTool?: Tool;
 
+    /**
+     * Creates Toolbar HTML Element
+     * @param host 
+     * @returns new Toolbar instance 
+     */
     public static create(host: HTMLElement): Toolbar {
         const toolbarElement = document.createElement('div');
 
@@ -16,9 +23,17 @@ export class Toolbar {
         return new Toolbar(toolbarElement);
     }
 
+    /**
+     * Creates an instance of Toolbar.
+     * @param element 
+     */
     private constructor(private readonly element: HTMLElement) {
     }
 
+    /**
+     * Adds Tool to Toolbar
+     * @param tool 
+     */
     public addTool(tool: Tool): void {
         const toolElement = document.createElement('div');
 
@@ -34,6 +49,10 @@ export class Toolbar {
         this.element.appendChild(toolElement);
     }
 
+    /**
+     * Toggles Tool
+     * @param tool 
+     */
     private toggleTool(tool: Tool): void {
         if (this.enabledTool) {
             this.enabledTool.disable?.();

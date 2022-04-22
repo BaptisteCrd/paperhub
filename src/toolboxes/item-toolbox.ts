@@ -5,7 +5,9 @@ import './item-toolbox.scss';
 import { project } from 'paper';
 import { ShelfItem, StorageBoxItem, ExtinguisherItem, DoorItem, BakeryStandItem, LampItem, SuspendedLampsItem, StairsItem, DisplayPanelItem, CheckoutItem } from '../toolbox-items';
 
-
+/**
+ * ItemToolbox extends Toolbox
+ */
 export class ItemToolbox extends Toolbox {
     protected readonly title = 'Tailles fixes';
 
@@ -21,13 +23,16 @@ export class ItemToolbox extends Toolbox {
         new LampItem, new SuspendedLampsItem, new DisplayPanelItem
     ];
 
-
+    /**
+     * Creates an HTML Element 
+     * @returns element - HTMLElement
+     */
     public createElement(): HTMLElement {
         const element = super.createElement();
 
         element.classList.add('color-toolbox');
 
-        // fix items
+        // Fix items
         const fixItemElement = document.createElement('div');
 
         for (const item of ItemToolbox.fixItems) {
@@ -41,7 +46,7 @@ export class ItemToolbox extends Toolbox {
 
         element.appendChild(fixItemElement);
 
-        // variables items
+        // Variables items (size)
         this.addListTitle("Tailles variables");
         const varItemElement = document.createElement('div');
 
@@ -56,7 +61,7 @@ export class ItemToolbox extends Toolbox {
 
         element.appendChild(varItemElement);
 
-        // hanging items
+        // Hanging items
         this.addListTitle("Suspendus");
         const hangItemElement = document.createElement('div');
 
@@ -74,6 +79,10 @@ export class ItemToolbox extends Toolbox {
         return element;
     }
 
+    /**
+     * Adds title section (e.g before HTML list)
+     * @param title 
+     */
     public addListTitle(title: string){
         const titleElement = document.createElement('div');
 
@@ -84,6 +93,10 @@ export class ItemToolbox extends Toolbox {
 
     }
 
+    /**
+     * Draws paperJS Path and stores Item as Path's data
+     * @param item 
+     */
     public createItem(item : any){
         project.activeLayer.selected = false;
         let path = item.drawItem();

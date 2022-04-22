@@ -2,6 +2,10 @@ import { Detailbox } from '../detailbox/detailbox';
 import './property-detailbox.scss';
 //import * as paper from 'paper';
 
+
+/**
+ * PropertyDetailbox extends Detailbox
+ */
 export class PropertyDetailbox extends Detailbox {
     private name: HTMLElement;
     private xValue: HTMLElement;
@@ -10,6 +14,11 @@ export class PropertyDetailbox extends Detailbox {
     private isRotatable: HTMLElement; 
     private isHanging: HTMLElement;
 
+
+    /**
+     * Sets properties (name, xValue, yValue, isSizable, isRotatable, isHanging)
+     * @param path 
+     */
     public setProperties(path: paper.Path): void {
         this.name.textContent = path.data.title;
         this.xValue.textContent = Math.round(path.position.x).toString();
@@ -26,16 +35,25 @@ export class PropertyDetailbox extends Detailbox {
         }
     }
 
+
+    /**
+     * Sets position (xValue, yValue)
+     * @param point 
+     */
     public setPosition(point: paper.Point): void {
         this.xValue.textContent = Math.round(point.x).toString();
         this.yValue.textContent = Math.round(point.y).toString();
     }
 
+
+    /**
+     * Creates HTML Element
+     * @returns element 
+     */
     public createElement(): HTMLElement {
         const element = super.createElement();
 
         element.style.display = 'none';
-
 
         const detailElement = document.createElement('div');
         detailElement.classList.add("detail-window");

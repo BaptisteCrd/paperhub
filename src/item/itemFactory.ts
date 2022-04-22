@@ -1,8 +1,16 @@
 import { BakeryStand, Door, Extinguisher, Lamp, Shelf, StorageBox, SuspendedLamps, Stairs, DisplayPanel, Checkout } from "../items";
 import { Item } from "./item";
 
+/**
+ * ItemFactory
+ * @description Grants creation of individual items based on their name 
+ */
 export class ItemFactory {
 
+      /**
+     * Create Item 
+     * @param itemType
+     */
     public static createItem = (itemType: string): Item => {
         if(itemType == "shelf"){
             return new Shelf();

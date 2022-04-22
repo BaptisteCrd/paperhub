@@ -1,3 +1,6 @@
+/**
+ * ColorHelper
+ */
 export class ColorHelper {
     // Base Plan
     public static readonly basePlanStrokeColor= "#000000";
@@ -23,4 +26,6 @@ export class ColorHelper {
     public static readonly displayPanelColor= "cyan";
     public static readonly checkoutColor= "#cc5500";
 
+    // Collision
+    public static readonly collisionColor = "red";
 }

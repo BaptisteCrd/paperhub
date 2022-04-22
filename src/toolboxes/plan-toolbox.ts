@@ -3,7 +3,9 @@ import { OvalPlan } from "../toolbox-plans";
 import './item-toolbox.scss';
 import { project } from 'paper';
 
-
+/**
+ * PlanToolbox extends Toolbox
+ */
 export class PlanToolbox extends Toolbox {
     protected readonly title = 'Plans';
 
@@ -11,7 +13,10 @@ export class PlanToolbox extends Toolbox {
         new OvalPlan
     ];
 
-
+    /**
+     * Creates an HTML Element 
+     * @returns element - HTMLElement
+     */
     public createElement(): HTMLElement {
         const element = super.createElement();
 
@@ -19,6 +24,7 @@ export class PlanToolbox extends Toolbox {
 
         const plansElement = document.createElement('div');
 
+        // Adds all plans to list
         for (const plan of PlanToolbox.plans) {
             const planChildElement = document.createElement('p');
 
@@ -34,6 +40,10 @@ export class PlanToolbox extends Toolbox {
     }
 
 
+    /**
+     * Replaces current base plan 
+     * @param plan 
+     */
     public replaceCurrentPlan(plan : any){
         project.activeLayer.selected = false;
         plan.replaceCurrentPlan();

@@ -4,26 +4,32 @@ import * as paper from 'paper';
 import { ColorHelper } from '../helpers';
 import { ToolboxItem } from '../toolbox-item/toolbox-item';
 
+/**
+ * ShelfItem extends ToolboxItem
+ */
 export class ShelfItem extends ToolboxItem {
     public readonly title: string;
     public readonly icon: Icon;
     public readonly name: string;
 
+    /**
+     * Creates an instance of ShelfItem.
+     */
     constructor() {
-        super("Bloc d'etagères", "shelf", icon(faTableCellsLarge));
+        super("Bloc d'etagères", "shelf", icon(faTableCellsLarge, {title: "Bloc d'etagères"}));
     }
 
+    /**
+     * Draws Item (Adds paperJS Path to paperJS project)
+     * @returns paperJS Path instance 
+     */
     public drawItem(): paper.Path {
-        var rectangle = new paper.Rectangle(new paper.Point(-75, -37.5), new paper.Point(75, 37.5));
-        var path = new paper.Path.Rectangle(rectangle);
+        let rectangle = new paper.Rectangle(new paper.Point(-75, -37.5), new paper.Point(75, 37.5));
+        let path = new paper.Path.Rectangle(rectangle);
         path.fillColor = new paper.Color(ColorHelper.shelfFillColor);
         path.opacity = .7;
 
         paper.view.emit('paper_changed', new Event('paper_changed'));
-        // var text = new paper.PointText(new paper.Point(75, 40));
-        // text.justification = 'center';
-        // text.fillColor = new paper.Color('black');
-        // text.content = this.title;
 
         return path;
     }

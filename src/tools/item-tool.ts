@@ -5,26 +5,36 @@ import { ItemToolbox } from '../toolboxes';
 import { project } from 'paper';
 import * as paper from 'paper';
 import { PropertyDetailbox } from '../detailsboxes/property-detailbox';
-import { PathHelper } from '../helpers';
+import { ColorHelper, PathHelper } from '../helpers';
+import { ErrorMessagebox } from '../messageboxes/error-messagebox';
 
-var hitOptions = {
-	segments: true,
-	stroke: true,
-	fill: true,
-	tolerance: 5
-};
-
+/**
+ * ItemTool extends PaperTool
+ */
 export class ItemTool extends PaperTool {
     public readonly name = 'Placer un objet';
-
     public readonly icon = icon(faObjectGroup);
-    private eventPaperChanged = new Event('paper_changed');
+
     public segment: paper.Segment = new paper.Segment();
     public path: any;
     public movePath: boolean = false;
     public initialPosition : paper.Point;
 
-    public constructor(private readonly itemToolbox: ItemToolbox, private readonly propertyDetailbox: PropertyDetailbox) {
+    private eventPaperChanged = new Event('paper_changed');
+
+    private hitOptions = {
+        segments: true,
+        stroke: true,
+        fill: true,
+        tolerance: 5
+    };
+
+    /**
+     * Creates an instance of ItemTool.
+     * @param itemToolbox 
+     * @param propertyDetailbox 
+     */
+    public constructor(private readonly itemToolbox: ItemToolbox, private readonly propertyDetailbox: PropertyDetailbox, private readonly errorMessagebox: ErrorMessagebox) {
         super();
 
         this.paperTool.onMouseDown = this.onMouseDown.bind(this);
@@ -33,12 +43,18 @@ export class ItemTool extends PaperTool {
         this.paperTool.onMouseUp = this.onMouseUp.bind(this);
     }
 
+    /**
+     * Enables ItemTool and ItemToolbox
+     */
     public enable(): void {
         super.enable();
 
         this.itemToolbox.visible = true;
     }
 
+    /**
+     * Disables ItemTool and ItemToolbox
+     */
     public disable(): void {
         super.disable();
 
@@ -46,6 +62,10 @@ export class ItemTool extends PaperTool {
         this.propertyDetailbox.visible = false;
     }
 
+    /**
+     * Select path (item) / segment
+     * @param event 
+     */
     public onMouseDown(event: paper.ToolEvent): void {
         this.segment = this.path = null;
         project.activeLayer.selected = false;
@@ -54,7 +74,7 @@ export class ItemTool extends PaperTool {
             event.item.selected = true;
         }
 
-        var hitResult = project.hitTest(event.point, hitOptions);
+        let hitResult = project.hitTest(event.point, this.hitOptions);
 
         if (!hitResult){
             this.propertyDetailbox.visible = false;
@@ -70,16 +90,18 @@ export class ItemTool extends PaperTool {
         }
     
         if (hitResult) {
+            this.path = hitResult.item;
+
             if (hitResult.type == 'segment') {
                 this.segment = hitResult.segment;
-            } else if (hitResult.type == 'stroke') {
-                var location = hitResult.location;
+
+            } else if (hitResult.type == 'stroke' && !this.path.data.isPartition) {
+                let location = hitResult.location;
                 this.segment = this.path.insert(location.index + 1, event.point);
                 this.path.smooth();
             }
-
-            this.path = hitResult.item;
         }
+
         this.movePath = hitResult.type == 'fill';
         if (this.movePath && !this.path.data.basePlan){
             project.activeLayer.addChild(hitResult.item);
@@ -91,16 +113,18 @@ export class ItemTool extends PaperTool {
             this.initialPosition = new paper.Point(this.path.position.x, this.path.position.y);
         }
 
-
         this.propertyDetailbox.setProperties(this.path);
-
         this.propertyDetailbox.visible = true;
 
         paper.view.emit('paper_changed', this.eventPaperChanged);
     }
 
+    /**
+     * Place new path (item) / segment position if no collision 
+     * @param event 
+     */
     public onMouseUp(event: paper.MouseEvent): void {
-        var hitResult = project.hitTest(event.point, hitOptions);
+        let hitResult = project.hitTest(event.point, this.hitOptions);
         let type = "";
         if(hitResult){
             type = hitResult.type;
@@ -118,12 +142,19 @@ export class ItemTool extends PaperTool {
                 this.propertyDetailbox.setPosition(this.path.position);
             }
 
+            this.errorMessagebox.setErrorMessage("ERREUR: Vous ne pouvez pas deplacer cet objet à cause de colisions !");
+            this.errorMessagebox.show();
+
             this.path.fillColor = this.path.data.color;
         }
 
         paper.view.emit('paper_changed', this.eventPaperChanged);
     }
 
+    /**
+     * Moving the path (item) or segment
+     * @param event 
+     */
     public onMouseDrag(event: paper.MouseEvent): void {
         if(this.segment){
             if(this.path.data.isSizable){
@@ -139,31 +170,42 @@ export class ItemTool extends PaperTool {
         } 
 
         if(PathHelper.checkIntersections(this.path)){
-            this.path.fillColor = new paper.Color("red");
+            this.path.fillColor = new paper.Color(ColorHelper.collisionColor);
         } else {
             this.path.fillColor = this.path.data.color;
         }
     }
 
+    /**
+     * Rotate and delete a path (item)
+     * @param event 
+     */
     public onKeyDown(event: paper.KeyEvent): void {
         if(this.path){
             if(this.path.data.isRotatable){
-
-                //add message if cant be rotated !!!
-                if(event.key == "right"){            
+                if(event.key == "right"){     
+                    this.path.rotate(45);
+       
                     let collision = PathHelper.checkIntersections(this.path);
                     if(!collision){
-                        this.path.rotate(45);
                         this.propertyDetailbox.setPosition(this.path.position);
+                    } else {
+                        this.path.rotate(-45);
+                        this.errorMessagebox.setErrorMessage("ERREUR: Vous ne pouvez pas tourner cet objet à cause de colisions !");
+                        this.errorMessagebox.show();
                     }
                 }
-                if(event.key == "left"){            
+                if(event.key == "left"){      
+                    this.path.rotate(-45);
+      
                     let collision = PathHelper.checkIntersections(this.path);
                     if(!collision){
-                        this.path.rotate(-45);
                         this.propertyDetailbox.setPosition(this.path.position);
+                    } else {
+                        this.path.rotate(45);
+                        this.errorMessagebox.setErrorMessage("ERREUR: Vous ne pouvez pas tourner cet objet à cause de colisions !");
+                        this.errorMessagebox.show();
                     }
-                    
                 }
             }
 

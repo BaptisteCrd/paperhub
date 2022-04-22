@@ -2,16 +2,26 @@ import { project } from 'paper';
 import { Toolbox } from '../toolbox';
 import * as paper from 'paper';
 
+/**
+ * DoToolbox extends Toolbox
+ */ 
 export class DoToolbox extends Toolbox {
     protected readonly title = 'Undo / Redo';
     protected saveList : Array<string> = [];
     protected idxCurrentState : number = -1;
     private readonly maxSave : number = 10;
 
+    /**
+     * Creates an instance of DoToolbox.
+     */
     public constructor() {
         super();
     }
 
+    /**
+     * Creates an HTML Element 
+     * @returns element - HTMLElement
+     */
     public createElement(): HTMLElement {
         const element = super.createElement();
 
@@ -33,11 +43,15 @@ export class DoToolbox extends Toolbox {
 
         element.appendChild(redoButtonElement);
 
+        //Always show
         this.visible = true;
       
         return element;
     }
 
+    /**
+     * Saves state of project as JSON saveList
+     */
     public saveState(): void {
         const json = paper.project.exportJSON();
         if(json != this.saveList[this.idxCurrentState]){
@@ -48,6 +62,9 @@ export class DoToolbox extends Toolbox {
         //console.log('SAVED LENGTH', this.saveList, 'idxCurrentState' , this.idxCurrentState);
     }
 
+    /**
+     * Undos project with recovering from JSON saveList
+     */
     private undoProject(): void {
         if(this.idxCurrentState>0){
             const json = this.saveList.at(this.idxCurrentState-1);
@@ -60,6 +77,9 @@ export class DoToolbox extends Toolbox {
         //console.log('LENGTH', this.saveList.length, 'idxCurrentState' , this.idxCurrentState);
     }
 
+    /**
+     * Redos project with recovering from JSON saveList
+     */
     private redoProject(): void {
         if(this.idxCurrentState < this.saveList.length-1){
             const json = this.saveList.at(this.idxCurrentState+1);
