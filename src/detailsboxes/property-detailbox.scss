@@ -1,0 +1,16 @@
+.detail-window {
+	>div {
+		>div {
+			display: inline-block;
+			&:first-of-type {
+				width: 60%;
+			}
+		}
+    }
+    > .detail-name {
+        font-weight: bold;
+        > div {
+            width: 100% !important;
+        }
+    }
+}

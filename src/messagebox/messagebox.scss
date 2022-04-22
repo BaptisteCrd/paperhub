@@ -1,0 +1,15 @@
+@use '../variables' as vars;
+
+.messagebox {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    padding: 16px;
+    border-radius: 6px;
+    box-shadow: vars.$popup-box-shadow;
+    z-index: 9999;
+    position: absolute;
+    color: vars.$color-error;
+    background-color: vars.$color-error-background;
+    
+}

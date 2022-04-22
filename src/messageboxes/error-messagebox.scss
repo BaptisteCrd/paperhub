@@ -1,0 +1,11 @@
+.error-message {
+	>div {
+		>div {
+			&:first-of-type {
+				font-weight: bold;
+				margin-right: 5px;
+			}
+			display: inline-block;
+		}
+	}
+}
