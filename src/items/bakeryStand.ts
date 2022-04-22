@@ -1,7 +1,6 @@
 import { ColorHelper } from '../helpers';
 import { Item } from '../item/item';
 
-
 /**
  * BakeryStand extends Item
  */

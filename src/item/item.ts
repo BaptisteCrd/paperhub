@@ -1,6 +1,5 @@
 import * as paper from 'paper';
 
-
 /**
  * Item
  * @description Abstract class (base of individual items)
@@ -11,7 +10,6 @@ export abstract class Item {
     isHanging: boolean; 
     isRotatable: boolean;
     color: paper.Color;
-
 
     /**
      * Creates an instance of Item.
