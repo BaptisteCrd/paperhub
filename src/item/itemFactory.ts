@@ -1,4 +1,4 @@
-import { BakeryStand, Door, Extinguisher, Lamp, Shelf, StorageBox } from "../items";
+import { BakeryStand, Door, Extinguisher, Lamp, Shelf, StorageBox, SuspendedLamps } from "../items";
 import { Item } from "./item";
 
 export class ItemFactory {
@@ -26,6 +26,10 @@ export class ItemFactory {
 
         if(itemType == "door"){
             return new Door;
+        }
+
+        if(itemType == "suspendedLamps"){
+          return new SuspendedLamps;
         }
 
         return new Shelf;

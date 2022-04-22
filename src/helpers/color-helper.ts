@@ -3,7 +3,7 @@ export class ColorHelper {
     public static readonly basePlanStrokeColor= "#000000";
     public static readonly basePlanFillColor= "#c4c1be";
 
-    // Partition 
+    // Partition
     public static readonly invalidPartitionStrokeColor= "#ff0000";
     public static readonly validPartitionStrokeColor= "#000000";
 
@@ -18,4 +18,6 @@ export class ColorHelper {
     public static readonly lampFillColor= "blue";
     public static readonly shelfFillColor= "orange";
     public static readonly storageBoxFillColor= "yellow";
+    public static readonly suspendedLampsColor= "pink";
+
 }

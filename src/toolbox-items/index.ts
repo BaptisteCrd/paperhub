@@ -1,4 +1,5 @@
 export * from './lamp-item';
+export * from './suspendedLamps-item';
 export * from './shelf-item';
 export * from './storageBox-item';
 export * from './extinguisher-item';

@@ -3,7 +3,7 @@ import { ItemFactory } from '../item/itemFactory';
 import { Toolbox } from '../toolbox';
 import './item-toolbox.scss';
 import { project } from 'paper';
-import { ShelfItem, StorageBoxItem, ExtinguisherItem, DoorItem, BakeryStandItem, LampItem } from '../toolbox-items';
+import { ShelfItem, StorageBoxItem, ExtinguisherItem, DoorItem, BakeryStandItem, LampItem, SuspendedLampsItem } from '../toolbox-items';
 
 
 export class ItemToolbox extends Toolbox {
@@ -18,7 +18,7 @@ export class ItemToolbox extends Toolbox {
     ];
 
     private static readonly hangingItems = [
-        new LampItem
+        new LampItem, new SuspendedLampsItem
     ];
 
 
