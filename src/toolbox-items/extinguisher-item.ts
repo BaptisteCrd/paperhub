@@ -16,7 +16,7 @@ export class ExtinguisherItem extends ToolboxItem {
      * Creates an instance of ExtinguisherItem.
      */
     constructor() {
-        super("Extincteur", "extinguisher", icon(faFireExtinguisher));
+        super("Extincteur", "extinguisher", icon(faFireExtinguisher, {title: "Extincteur"}));
     }
 
     /**

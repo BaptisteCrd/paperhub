@@ -16,7 +16,7 @@ export class LampItem extends ToolboxItem {
      * Creates an instance of LampItem.
      */
     constructor() {
-        super("Lampe", "lamp", icon(faLightbulb));
+        super("Lampe", "lamp", icon(faLightbulb, {title: "Lampe"}));
     }
 
     /**

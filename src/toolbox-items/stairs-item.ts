@@ -16,7 +16,7 @@ export class StairsItem extends ToolboxItem {
      * Creates an instance of StairsItem.
      */
     constructor() {
-        super("Escaliers", "stairs", icon(faStairs));
+        super("Escaliers", "stairs", icon(faStairs, {title: "Escaliers"}));
     }
 
     /**

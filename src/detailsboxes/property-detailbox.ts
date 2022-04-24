@@ -13,6 +13,7 @@ export class PropertyDetailbox extends Detailbox {
     private isSizable: HTMLElement;
     private isRotatable: HTMLElement; 
     private isHanging: HTMLElement;
+    private length: HTMLElement;
 
 
     /**
@@ -33,6 +34,9 @@ export class PropertyDetailbox extends Detailbox {
         if(typeof path.data.isHanging !== 'undefined'){
             this.isHanging.textContent = (path.data.isHanging ? "true" : "false");
         }
+        if(typeof path.length !== 'undefined'){
+            this.length.textContent = Math.round(path.length).toString();
+        }
     }
 
 
@@ -45,6 +49,13 @@ export class PropertyDetailbox extends Detailbox {
         this.yValue.textContent = Math.round(point.y).toString();
     }
 
+    /**
+     * Sets length
+     * @param length 
+     */
+    public setLength(length: number): void {
+        this.length.textContent = Math.round(length).toString();
+    }
 
     /**
      * Creates HTML Element
@@ -93,6 +104,19 @@ export class PropertyDetailbox extends Detailbox {
         yValueElement.appendChild(this.yValue);
         
         detailElement.appendChild(yValueElement);
+
+        // Section - Length
+        const lengthElement = document.createElement('div');
+
+        const lengthLabelElement = document.createElement('div');
+        lengthLabelElement.textContent = "Longueur";
+        lengthElement.appendChild(lengthLabelElement);
+
+        this.length = document.createElement('div');
+        this.length.textContent = "test";
+        lengthElement.appendChild(this.length);
+        
+        detailElement.appendChild(lengthElement);
 
         // Section - Taille changable
         const isSizableElement = document.createElement('div');

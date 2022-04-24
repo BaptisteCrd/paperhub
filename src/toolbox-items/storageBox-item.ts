@@ -16,7 +16,7 @@ export class StorageBoxItem extends ToolboxItem {
      * Creates an instance of StorageBoxItem.
      */
     constructor() {
-        super("Bloc caisse", "storageBox", icon(faBoxArchive));
+        super("Bloc caisse", "storageBox", icon(faBoxArchive, {title: "Bloc caisse"}));
     }
 
     /**

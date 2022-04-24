@@ -16,7 +16,7 @@ export class CheckoutItem extends ToolboxItem {
      * Creates an instance of CheckoutTtem.
      */
     constructor() {
-        super("Caisse", "checkout", icon(faCashRegister));
+        super("Caisse", "checkout", icon(faCashRegister, {title: "Caisse"}));
     }
 
     /**

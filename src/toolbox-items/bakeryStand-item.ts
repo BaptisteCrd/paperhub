@@ -16,7 +16,7 @@ export class BakeryStandItem extends ToolboxItem {
      * Creates an instance of BakeryStandItem.
      */
     constructor() {
-        super("Stand de boulangerie", "bakeryStand", icon(faStore));
+        super("Stand de boulangerie", "bakeryStand", icon(faStore, {title: "Stand de boulangerie"}));
     }
 
     /**

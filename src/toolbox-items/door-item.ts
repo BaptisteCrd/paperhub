@@ -16,7 +16,7 @@ export class DoorItem extends ToolboxItem {
      * Creates an instance of DoorItem.
      */
     constructor() {
-        super("Porte", "door", icon(faDoorOpen));
+        super("Porte", "door", icon(faDoorOpen, {title: "Porte"}));
     }
 
     /**

@@ -95,7 +95,7 @@ export class ItemTool extends PaperTool {
             if (hitResult.type == 'segment') {
                 this.segment = hitResult.segment;
 
-            } else if (hitResult.type == 'stroke' && !this.path.data.isPartition) {
+            } else if (hitResult.type == 'stroke' && (typeof this.path.data.isPartition === 'undefined')) {
                 let location = hitResult.location;
                 this.segment = this.path.insert(location.index + 1, event.point);
                 this.path.smooth();
@@ -142,6 +142,8 @@ export class ItemTool extends PaperTool {
                 this.propertyDetailbox.setPosition(this.path.position);
             }
 
+            this.propertyDetailbox.setLength(this.path.length);
+
             this.errorMessagebox.setErrorMessage("Vous ne pouvez pas deplacer cet objet à cause de collisions !");
             this.errorMessagebox.show();
 
@@ -165,9 +167,12 @@ export class ItemTool extends PaperTool {
             if(!this.path.data.basePlan){
                 this.path.position.x += event.delta.x;
                 this.path.position.y += event.delta.y;
-                this.propertyDetailbox.setPosition(this.path.position);
             }
         } 
+
+        this.propertyDetailbox.setPosition(this.path.position);
+        this.propertyDetailbox.setLength(this.path.length);
+
 
         if(PathHelper.checkIntersections(this.path)){
             this.path.fillColor = new paper.Color(ColorHelper.collisionColor);

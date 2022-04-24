@@ -9,7 +9,7 @@ export class DoToolbox extends Toolbox {
     protected readonly title = 'Undo / Redo';
     protected saveList : Array<string> = [];
     protected idxCurrentState : number = -1;
-    private readonly maxSave : number = 10;
+    private readonly maxSave : number = 25;
 
     /**
      * Creates an instance of DoToolbox.

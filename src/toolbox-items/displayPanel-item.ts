@@ -16,7 +16,7 @@ export class DisplayPanelItem extends ToolboxItem {
      * Creates an instance of DisplayPanelItem.
      */
     constructor() {
-        super("Panneau d'affichage", "displayPanel", icon(faSignHanging));
+        super("Panneau d'affichage", "displayPanel", icon(faSignHanging, {title: "Panneau d'affichage"}));
     }
 
     /**

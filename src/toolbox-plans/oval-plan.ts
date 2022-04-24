@@ -16,7 +16,7 @@ export class OvalPlan extends ToolboxPlan {
      * Creates an instance of OvalPlan.
      */
     constructor() {
-        super("Plan ovale", "basePlan", icon(faCircle));
+        super("Plan ovale", "basePlan", icon(faCircle, {title: "Plan ovale"}));
     }
 
     /**
