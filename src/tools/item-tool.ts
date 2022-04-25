@@ -81,7 +81,6 @@ export class ItemTool extends PaperTool {
             return;
         }
 
-
         if (event.modifiers.shift) {
             if (hitResult.type == 'segment') {
                 hitResult.segment.remove();
@@ -92,6 +91,7 @@ export class ItemTool extends PaperTool {
         if (hitResult) {
             this.path = hitResult.item;
 
+            console.log(this.path);
             if (hitResult.type == 'segment') {
                 this.segment = hitResult.segment;
 

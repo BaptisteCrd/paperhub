@@ -1,5 +1,5 @@
 import { Toolbox } from '../toolbox';
-import { OvalPlan } from "../toolbox-plans";
+import { InitialPlan, OvalPlan } from "../toolbox-plans";
 import './item-toolbox.scss';
 import { project } from 'paper';
 
@@ -10,7 +10,7 @@ export class PlanToolbox extends Toolbox {
     protected readonly title = 'Plans';
 
     private static readonly plans = [
-        new OvalPlan
+        new InitialPlan, new OvalPlan
     ];
 
     /**

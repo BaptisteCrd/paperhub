@@ -76,7 +76,7 @@ export class DrawTool extends PaperTool {
       //Checks if path should be closed to build an fully object
       if(distFirstPoint < 30 && this.myPath.firstSegment != this.myPath.lastSegment){
     	  this.myPath.closed = true;
-        this.myPath.strokeColor = null; // TODO : A TESTER
+        this.myPath.strokeColor = null;
         this.myPath.fillColor = new paper.Color(ColorHelper.customPathFillColor);
         this.myPath.data = new DrawItem(true, "Objet dessiné", false, true);
         this.myPath = undefined;

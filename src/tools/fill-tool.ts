@@ -50,6 +50,7 @@ export class FillTool extends PaperTool {
 
         if (hit?.item) {
             hit.item.fillColor = this.colorToolbox.currentPaperColor;
+            hit.item.data.color = this.colorToolbox.currentPaperColor;
             paper.view.emit('paper_changed', this.eventPaperChanged);
         }
     }
