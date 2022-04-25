@@ -31,6 +31,10 @@ src/items/
 src/item/item.ts
     - Contient la classe abstraite pour instancier un item
 
+### Documentation
+Peut être créé avec la commande : npx typedoc
+
+
 ## Licences
 
 Université de Strasbourg - Master 2 Sciences et Ingénierie du Logiciel - Analyse et architecture logicielle orientée objets - 2021/2022

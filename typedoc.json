@@ -1,0 +1,7 @@
+{
+    "name": "Documentation",
+    "entryPoints": ["./src"],
+    "out": "docs",
+    "excludePrivate": false,
+    "entryPointStrategy": "expand"
+}
