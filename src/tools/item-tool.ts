@@ -31,8 +31,8 @@ export class ItemTool extends PaperTool {
 
     /**
      * Creates an instance of ItemTool.
-     * @param itemToolbox 
-     * @param propertyDetailbox 
+     * @param itemToolbox
+     * @param propertyDetailbox
      */
     public constructor(private readonly itemToolbox: ItemToolbox, private readonly propertyDetailbox: PropertyDetailbox, private readonly errorMessagebox: ErrorMessagebox) {
         super();
@@ -64,12 +64,12 @@ export class ItemTool extends PaperTool {
 
     /**
      * Select path (item) / segment
-     * @param event 
+     * @param event
      */
     public onMouseDown(event: paper.ToolEvent): void {
         this.segment = this.path = null;
         project.activeLayer.selected = false;
-        
+
         if(event.item){
             event.item.selected = true;
         }
@@ -87,7 +87,7 @@ export class ItemTool extends PaperTool {
             };
             return;
         }
-    
+
         if (hitResult) {
             this.path = hitResult.item;
 
@@ -95,7 +95,7 @@ export class ItemTool extends PaperTool {
             if (hitResult.type == 'segment') {
                 this.segment = hitResult.segment;
 
-            } else if (hitResult.type == 'stroke' && (typeof this.path.data.isPartition === 'undefined')) {
+            } else if (hitResult.type == 'stroke' && (typeof this.path.data.isPartition === 'undefined') && (typeof this.path.data.basePlan === 'undefined')) {
                 let location = hitResult.location;
                 this.segment = this.path.insert(location.index + 1, event.point);
                 this.path.smooth();
@@ -120,8 +120,8 @@ export class ItemTool extends PaperTool {
     }
 
     /**
-     * Place new path (item) / segment position if no collision 
-     * @param event 
+     * Place new path (item) / segment position if no collision
+     * @param event
      */
     public onMouseUp(event: paper.MouseEvent): void {
         let hitResult = project.hitTest(event.point, this.hitOptions);
@@ -129,7 +129,7 @@ export class ItemTool extends PaperTool {
         if(hitResult){
             type = hitResult.type;
         }
-        
+
         let collision = PathHelper.checkIntersections(this.path);
 
         if(collision){
@@ -155,7 +155,7 @@ export class ItemTool extends PaperTool {
 
     /**
      * Moving the path (item) or segment
-     * @param event 
+     * @param event
      */
     public onMouseDrag(event: paper.MouseEvent): void {
         if(this.segment){
@@ -168,7 +168,7 @@ export class ItemTool extends PaperTool {
                 this.path.position.x += event.delta.x;
                 this.path.position.y += event.delta.y;
             }
-        } 
+        }
 
         this.propertyDetailbox.setPosition(this.path.position);
         this.propertyDetailbox.setLength(this.path.length);
@@ -183,14 +183,14 @@ export class ItemTool extends PaperTool {
 
     /**
      * Rotate and delete a path (item)
-     * @param event 
+     * @param event
      */
     public onKeyDown(event: paper.KeyEvent): void {
         if(this.path){
             if(this.path.data.isRotatable){
-                if(event.key == "right"){     
+                if(event.key == "right"){
                     this.path.rotate(45);
-       
+
                     let collision = PathHelper.checkIntersections(this.path);
                     if(!collision){
                         this.propertyDetailbox.setPosition(this.path.position);
@@ -200,9 +200,9 @@ export class ItemTool extends PaperTool {
                         this.errorMessagebox.show();
                     }
                 }
-                if(event.key == "left"){      
+                if(event.key == "left"){
                     this.path.rotate(-45);
-      
+
                     let collision = PathHelper.checkIntersections(this.path);
                     if(!collision){
                         this.propertyDetailbox.setPosition(this.path.position);
