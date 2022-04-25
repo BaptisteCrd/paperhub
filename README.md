@@ -34,6 +34,52 @@ src/item/item.ts
 ### Documentation
 Peut être créé avec la commande : npx typedoc
 
+## Commandes
+
+### Plans
+
+On dispose de deux plans à choisir en cliquant dans la zone Plans sur le premier outil du dock.
+
+### Cloison
+
+En cliquant sur le deuxième outil du dock, on peux dessiner une cloison. 
+- Au premier clic, on place le point de départ de la cloison. 
+- Au second, on dessine le trait.
+- Au troisième, on valide le cloison.
+
+On peut annuler le premier clic en appuyant sur la touche Echap
+
+On peut supprimer la cloison avant la validation de la cloison en appuyant sur la touche Suppr.
+
+On ne peut pas dessiner un cloison qui intersecte un objet ou une cloison.
+
+### Couleurs
+
+A l'aide du seau dans le dock, on peut choisir la couleur de son choix et remplir les objets de la couleur choisi
+
+### Dessiner des formes
+
+A l'aide du crayon dans le dock, on peut dessiner des formes à notre souhait.
+
+On peut maintenir le clic jusqu'à retourner au point de départ et la forme se remplira en bleu.
+
+### Placer un objet
+
+En cliquant sur le dernier outil du dock, on a une fenètre d'objet sur la droite, en cliquant sur un objet, il apparait sur le plan et on peut déplacer en drag and drop l'objet.
+
+Pour reconnaitre les différents objets, on a une fenêtre sur la gauche où l'on retrouve différentes caractéristiques de l'objet.
+
+En appuyant sur les flèches directionnelles, on peut faire des rotations de l'objet.
+
+En appuyant sur la touche Suppr, on peut supprimer l'objet sélectionné.
+
+### Undo / Redo
+
+La fenêtre Undo / Redo permet d'annuler le dernier changement jusqu'à une limite de 10 changements.
+
+### Sauvegarde / Restaure
+
+La fenêtre Projet permet de sauvegarder l'état en cours ou restaurer le dernier état enregistré.
 
 ## Licences
 
