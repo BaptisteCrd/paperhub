@@ -27,7 +27,9 @@ export class BakeryStandItem extends ToolboxItem {
         let rectangle = new paper.Rectangle(new paper.Point(-75, -37.5), new paper.Point(75, 37.5));
         let path = new paper.Path.Rectangle(rectangle);
         path.fillColor = new paper.Color(ColorHelper.bakeryStandFillColor);
-        path.opacity = .7;
+        path.opacity = this.opacity;
+        path.position.x = this.startX;
+        path.position.y = this.startY;
 
         paper.view.emit('paper_changed', new Event('paper_changed'));
 

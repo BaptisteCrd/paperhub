@@ -8,6 +8,9 @@ export abstract class ToolboxItem {
     public readonly title: string;
     public readonly icon: Icon;
     public readonly name: string;
+    public readonly opacity: number;
+    public readonly startX: number;
+    public readonly startY: number;
 
     /**
      * Creates an instance of ToolboxItem.
@@ -19,6 +22,9 @@ export abstract class ToolboxItem {
         this.name = name;
         this.title = title;
         this.icon = icon;
+        this.opacity = 0.7;
+        this.startX = 0;
+        this.startY = -370;     
     }
 
     /**

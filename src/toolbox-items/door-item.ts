@@ -29,6 +29,10 @@ export class DoorItem extends ToolboxItem {
       });
 
       path.fillColor = new paper.Color(ColorHelper.doorFillColor);
+      path.opacity = this.opacity;
+      path.position.x = this.startX;
+      path.position.y = this.startY;
+      
       paper.view.emit('paper_changed', new Event('paper_changed'));
 
       return path;

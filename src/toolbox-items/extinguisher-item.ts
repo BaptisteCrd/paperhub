@@ -26,7 +26,9 @@ export class ExtinguisherItem extends ToolboxItem {
     public drawItem(): paper.Path {
       let circle = new paper.Path.Circle(new paper.Point(0, -3), 15);
       circle.fillColor = new paper.Color(ColorHelper.extinguisherFillColor);
-      circle.opacity = .7;
+      circle.opacity = this.opacity;
+      circle.position.x = this.startX;
+      circle.position.y = this.startY;
 
       paper.view.emit('paper_changed', new Event('paper_changed'));
 

@@ -28,7 +28,9 @@ export class DisplayPanelItem extends ToolboxItem {
       var radius = new paper.Size(20, 20);
       var path = new paper.Path.Rectangle(rectangle, radius);
       path.fillColor = new paper.Color(ColorHelper.displayPanelColor);
-      path.opacity = .7;
+      path.opacity = this.opacity;
+      path.position.x = this.startX;
+      path.position.y = this.startY;
 
       return path;
     }

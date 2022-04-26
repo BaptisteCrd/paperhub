@@ -27,7 +27,9 @@ export class StairsItem extends ToolboxItem {
       var rectangle = new paper.Rectangle(new paper.Point(0, 0), new paper.Point(150, 200));
       var path = new paper.Path.Rectangle(rectangle);
       path.fillColor = new paper.Color(ColorHelper.stairsColor);
-      path.opacity = .7;
+      path.opacity = this.opacity;
+      path.position.x = this.startX;
+      path.position.y = this.startY;
 
       paper.view.emit('paper_changed', new Event('paper_changed'));
 
