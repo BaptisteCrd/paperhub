@@ -1,4 +1,6 @@
-# PaperHub
+# PaperHub (M2 SIL - Analyse et architecture logicielle orientée objets)
+
+##### Baptiste CERDAN, Janos FALKE, Thomas STEINMETZ, Victor VOGT 
 
 <p align="center">
   <img src="https://img.shields.io/badge/node-16.14.0-green.svg" />
