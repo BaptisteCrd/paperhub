@@ -42,6 +42,7 @@ export class DrawTool extends PaperTool {
           
         if(this.myPath.fullySelected){
           this.myPath.fullySelected = false;
+          this.myPath = undefined;
         }
       } 
     }
