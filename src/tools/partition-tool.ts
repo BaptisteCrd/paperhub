@@ -29,6 +29,19 @@ export class PartitionTool extends PaperTool {
     }
 
     /**
+     * Disables PartitionTool
+     */
+    public disable(): void {
+        if(this.path && this.active){
+            this.path.remove();
+            this.path.fullySelected = false;
+            this.active = false;
+        } else if (this.path && this.path.fullySelected){
+            this.path.fullySelected = false;
+        }
+    }
+
+    /**
      * Four possibilites : 
      * - Creates first point of new paperJS path 
      * - Creates second point of path to make a stroke
@@ -108,6 +121,8 @@ export class PartitionTool extends PaperTool {
                 this.path.remove();
                 this.path.fullySelected = false;
                 this.active = false;
+
+                paper.view.emit('paper_changed', this.eventPaperChanged);
             }
         } else {
             if(this.active){
@@ -115,9 +130,10 @@ export class PartitionTool extends PaperTool {
                     this.path.remove();
                     this.path.fullySelected = false;
                     this.active = false;
+
+                    paper.view.emit('paper_changed', this.eventPaperChanged);
                 }
             }
         }
-        paper.view.emit('paper_changed', this.eventPaperChanged);
     };
 }

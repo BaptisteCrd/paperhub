@@ -59,7 +59,7 @@ export class App {
 
         const fillTool = new FillTool(colorToolbox);
         const partitionTool = new PartitionTool(errorMessagebox);
-        const drawTool = new DrawTool();
+        const drawTool = new DrawTool(errorMessagebox);
         const itemTool = new ItemTool(itemToolbox, propertyDetailbox, errorMessagebox);
         const planTool = new PlanTool(planToolbox);
 

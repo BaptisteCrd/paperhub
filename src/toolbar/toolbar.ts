@@ -56,7 +56,6 @@ export class Toolbar {
     private toggleTool(tool: Tool): void {
         if (this.enabledTool) {
             this.enabledTool.disable?.();
-
             const toolElement = this.elementByTool.get(this.enabledTool)!;
             toolElement.classList.remove('active');
         }

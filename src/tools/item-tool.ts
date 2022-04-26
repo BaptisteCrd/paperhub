@@ -57,6 +57,9 @@ export class ItemTool extends PaperTool {
      */
     public disable(): void {
         super.disable();
+        if(this.path){
+            this.path.fullySelected = false;
+        }
 
         this.itemToolbox.visible = false;
         this.propertyDetailbox.visible = false;
@@ -91,7 +94,6 @@ export class ItemTool extends PaperTool {
         if (hitResult) {
             this.path = hitResult.item;
 
-            console.log(this.path);
             if (hitResult.type == 'segment') {
                 this.segment = hitResult.segment;
 
@@ -199,8 +201,7 @@ export class ItemTool extends PaperTool {
                         this.errorMessagebox.setErrorMessage("Vous ne pouvez pas tourner cet objet à cause de collisions !");
                         this.errorMessagebox.show();
                     }
-                }
-                if(event.key == "left"){
+                } else if(event.key == "left"){
                     this.path.rotate(-45);
 
                     let collision = PathHelper.checkIntersections(this.path);
